@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Forces Cafe | Cafe at the Gisborne RSA, Gisborne</title>
+<meta name="description" content="The Forces Cafe at the Gisborne RSA, 184 Childers Road. Barista coffee, all-day cabinet food, catering and live music in the courtyard. Everyone welcome.">
+<meta property="og:title" content="The Forces Cafe | Cafe at the Gisborne RSA, Gisborne">
+<meta property="og:description" content="Barista coffee, honest kai and live music at the Gisborne RSA. 184 Childers Road, Gisborne. Everyone welcome, member or not.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/fb-logo.png">
+<link rel="icon" type="image/png" href="img/badge.png">
+<link rel="preload" as="image" href="img/hero-coffee.jpg" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1d1a16;
+  --ink-soft:#2a2621;
+  --paper:#f6f3ec;
+  --bone:#ece7db;
+  --line:rgba(29,26,22,.14);
+  --line-light:rgba(246,243,236,.18);
+  --poppy:#c8102e;
+  --poppy-deep:#9c0d24;
+  --text:#3b362f;
+  --text-light:#cfc9be;
+  --radius:14px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Jost',sans-serif;
+  font-size:16.5px;
+  line-height:1.7;
+  color:var(--text);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;image-orientation:from-image}
+a{color:inherit}
+h1,h2,h3{font-family:'Playfair Display',serif;color:var(--ink);line-height:1.15}
+::selection{background:var(--poppy);color:#fff}
+:focus-visible{outline:2px solid var(--poppy);outline-offset:3px}
+
+/* ---------- intro overlay ---------- */
+#intro{
+  position:fixed;inset:0;z-index:200;background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .7s var(--ease),visibility .7s;
+}
+#intro.gone{opacity:0;visibility:hidden;pointer-events:none}
+#intro img{width:110px;height:110px;border-radius:50%;opacity:0;transform:scale(.85);animation:introBadge 1s var(--ease) forwards}
+@keyframes introBadge{to{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){
+  #intro{display:none}
+}
+
+/* ---------- nav ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(29,26,22,.82);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line-light);
+}
+.nav{
+  max-width:1180px;margin:0 auto;padding:0 22px;
+  height:68px;display:flex;align-items:center;gap:26px;
+}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
+.brand img{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-light)}
+.brand span{
+  font-family:'Playfair Display',serif;font-weight:600;
+  color:#f6f3ec;font-size:1.14rem;letter-spacing:.02em;white-space:nowrap;
+}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{
+  color:#e9e4d9;text-decoration:none;font-size:.95rem;font-weight:500;
+  transition:color .25s;
+}
+.nav-links a:hover{color:#fff}
+.nav-call{
+  display:inline-flex;align-items:center;gap:8px;
+  height:40px;padding:0 18px;line-height:1;
+  background:var(--poppy);color:#fff;border-radius:999px;
+  text-decoration:none;font-weight:600;font-size:.92rem;white-space:nowrap;
+  transition:background .25s,transform .25s;
+}
+.nav-call:hover{background:var(--poppy-deep);transform:translateY(-1px)}
+.nav-call svg{width:15px;height:15px}
+#navToggle{
+  display:none;background:none;border:0;cursor:pointer;color:#f6f3ec;
+  width:44px;height:44px;align-items:center;justify-content:center;
+}
+#navToggle svg{width:26px;height:26px}
+@media (max-width:900px){
+  .nav-links{
+    position:fixed;top:68px;left:0;right:0;
+    background:rgba(29,26,22,.97);
+    flex-direction:column;align-items:flex-start;gap:0;
+    padding:10px 22px 24px;display:none;border-bottom:1px solid var(--line-light);
+  }
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links a{display:block;padding:14px 0;font-size:1.05rem;border-bottom:1px solid rgba(246,243,236,.08)}
+  #navToggle{display:inline-flex}
+}
+@media (max-width:520px){
+  .brand span{display:none}
+}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;min-height:100dvh;background:var(--ink);
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;color:#f6f3ec;
+}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  opacity:0;transition:opacity 1.8s ease;
+  filter:saturate(.85) contrast(1.05);
+}
+.hero-slide.on{opacity:1}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(29,26,22,.62) 0%,rgba(29,26,22,.48) 45%,rgba(29,26,22,.78) 100%);
+}
+.hero-inner{
+  position:relative;z-index:2;max-width:1180px;width:100%;
+  margin:0 auto;padding:120px 22px 70px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;
+  color:#e5dfd2;font-weight:500;margin-bottom:22px;
+}
+.hero-eyebrow::before{content:"";width:34px;height:1px;background:var(--poppy)}
+.hero h1{
+  color:#fbf9f4;font-size:clamp(2.5rem,6vw,4.2rem);
+  font-weight:600;max-width:15ch;margin-bottom:22px;
+  text-wrap:balance;
+}
+.hero h1 em{font-style:italic;color:#fff}
+.hero-sub{
+  max-width:46ch;font-size:1.12rem;color:#ddd6c9;margin-bottom:34px;
+}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:44px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:52px;padding:0 30px;border-radius:999px;
+  font-family:'Jost',sans-serif;font-weight:600;font-size:1rem;
+  text-decoration:none;cursor:pointer;border:0;line-height:1.2;
+  transition:transform .25s var(--ease),background .25s,color .25s,border-color .25s;
+}
+.btn:active{transform:scale(.98)}
+.btn-poppy{background:var(--poppy);color:#fff}
+.btn-poppy:hover{background:var(--poppy-deep);transform:translateY(-2px)}
+.btn-ghost{background:rgba(246,243,236,.1);color:#f6f3ec;border:1px solid rgba(246,243,236,.4)}
+.btn-ghost:hover{background:rgba(246,243,236,.2);transform:translateY(-2px)}
+.btn svg{width:17px;height:17px;flex:none}
+.hero-quote{
+  max-width:430px;border-radius:var(--radius);
+  background:rgba(29,26,22,.35);
+  border:1px solid rgba(246,243,236,.22);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  padding:18px 22px;min-height:118px;
+}
+.hero-quote .stars{color:var(--poppy);letter-spacing:2px;font-size:.95rem}
+.hero-quote blockquote{
+  font-size:.98rem;color:#efeadf;margin:6px 0 4px;line-height:1.5;
+  transition:opacity .5s ease;
+}
+.hero-quote .who{font-size:.85rem;color:#c9c2b4}
+.hero-quote .tag{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#a29b8c}
+
+/* ---------- sections shared ---------- */
+section{padding:96px 0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.sec-head{max-width:640px;margin-bottom:54px}
+.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:600;margin-bottom:14px;text-wrap:balance}
+.sec-head p{font-size:1.05rem}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- services ---------- */
+#menu{background:var(--paper)}
+.cards{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+}
+.card{
+  background:#fffdf8;border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px -18px rgba(29,26,22,.35)}
+.card-img{aspect-ratio:4/3;overflow:hidden}
+.card-img img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.85) contrast(1.05);
+  transition:transform .6s var(--ease);
+}
+.card:hover .card-img img{transform:scale(1.045)}
+.card-body{padding:22px 24px 26px}
+.card-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--poppy);margin-bottom:10px;
+}
+.card-label svg{width:15px;height:15px}
+.card-body h3{font-size:1.32rem;font-weight:600;margin-bottom:8px}
+.card-body p{font-size:.97rem;line-height:1.6}
+@media (max-width:960px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.cards{grid-template-columns:1fr}}
+
+/* ---------- about ---------- */
+#about{background:var(--bone)}
+.about-grid{
+  display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center;
+}
+.about-photos{position:relative;padding-bottom:74px}
+.about-main{
+  aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 24px 50px -24px rgba(29,26,22,.4);
+}
+.about-main img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05)}
+.about-small{
+  position:absolute;right:-6px;bottom:0;width:44%;
+  aspect-ratio:1/1;border-radius:var(--radius);overflow:hidden;
+  border:6px solid var(--bone);
+  box-shadow:0 18px 36px -18px rgba(29,26,22,.45);
+}
+.about-small img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05)}
+.about-tag{
+  position:absolute;left:0;bottom:22px;
+  background:var(--poppy);color:#fff;border-radius:10px;
+  padding:12px 18px;font-weight:600;font-size:.9rem;line-height:1.35;
+  box-shadow:0 12px 26px -12px rgba(156,13,36,.7);
+}
+.about-copy h2{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:600;margin-bottom:18px;text-wrap:balance}
+.about-copy p{margin-bottom:16px}
+.about-list{list-style:none;margin-top:26px;display:grid;gap:14px}
+.about-list li{display:flex;gap:12px;align-items:flex-start;font-weight:500;color:var(--ink-soft)}
+.about-list svg{width:20px;height:20px;color:var(--poppy);flex:none;margin-top:3px}
+@media (max-width:900px){
+  .about-grid{grid-template-columns:1fr;gap:44px}
+  .about-photos{max-width:520px}
+}
+
+/* ---------- crew ---------- */
+#crew .sec-head{margin-bottom:10px}
+.crew-badge{
+  display:inline-block;background:var(--bone);border:1px solid var(--line);
+  border-radius:999px;padding:6px 16px;font-size:.8rem;font-weight:600;
+  letter-spacing:.02em;color:var(--ink-soft);margin-bottom:44px;
+}
+.crew-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.crew-card{
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:34px 26px;text-align:center;background:#fffdf8;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.crew-card:hover{transform:translateY(-5px);box-shadow:0 16px 36px -18px rgba(29,26,22,.3)}
+.avatar{
+  width:88px;height:88px;border-radius:50%;margin:0 auto 18px;
+  background:var(--ink);color:#f6f3ec;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:600;
+  border:3px solid var(--poppy);
+}
+.crew-card h3{font-size:1.22rem;font-weight:600;margin-bottom:6px}
+.crew-card p{font-size:.95rem}
+@media (max-width:820px){.crew-grid{grid-template-columns:1fr;max-width:420px}}
+
+/* ---------- reviews ---------- */
+#reviews{background:var(--ink)}
+#reviews .sec-head h2{color:#fbf9f4}
+#reviews .sec-head p{color:var(--text-light)}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-bottom:44px}
+.review-card{
+  background:var(--ink-soft);border:1px solid rgba(246,243,236,.12);
+  border-radius:var(--radius);padding:28px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:transform .35s var(--ease),border-color .35s;
+}
+.review-card:hover{transform:translateY(-5px);border-color:rgba(246,243,236,.28)}
+.review-card .stars{color:var(--poppy);letter-spacing:3px}
+.review-card p{color:#e2dccf;font-size:.98rem;line-height:1.6}
+.review-card .who{color:#b3ab9b;font-size:.88rem;font-weight:500}
+.review-note{
+  color:#a29b8c;font-size:.85rem;margin-bottom:30px;max-width:52ch;
+}
+.review-actions{display:flex;flex-wrap:wrap;gap:14px}
+@media (max-width:900px){.review-grid{grid-template-columns:1fr;max-width:520px}}
+
+/* ---------- review banner ---------- */
+#banner{
+  background:var(--poppy-deep);padding:64px 0;
+}
+.banner-inner{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:26px;
+}
+.banner-inner h2{color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;max-width:22ch}
+.btn-light{background:#fbf9f4;color:var(--poppy-deep)}
+.btn-light:hover{background:#fff;transform:translateY(-2px)}
+
+/* ---------- contact ---------- */
+#visit{background:var(--bone)}
+.contact-card{
+  background:#fffdf8;border:1px solid var(--line);border-radius:20px;
+  overflow:hidden;display:grid;grid-template-columns:1fr 1fr;
+  box-shadow:0 30px 60px -35px rgba(29,26,22,.4);
+}
+.contact-map{min-height:460px}
+.contact-map iframe{width:100%;height:100%;border:0;display:block}
+.contact-info{padding:44px 44px 40px;display:flex;flex-direction:column}
+.contact-info h2{font-size:1.9rem;font-weight:600;margin-bottom:8px}
+.contact-info>p{margin-bottom:26px}
+.contact-btns{display:grid;gap:12px;margin-bottom:30px}
+.contact-btns .btn{width:100%}
+.btn-ink{background:var(--ink);color:#f6f3ec}
+.btn-ink:hover{background:var(--ink-soft);transform:translateY(-2px)}
+.info-rows{display:grid;gap:16px;margin-bottom:28px}
+.info-row{display:flex;gap:14px;align-items:flex-start}
+.info-row svg{width:20px;height:20px;color:var(--poppy);flex:none;margin-top:4px}
+.info-row .lbl{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#6b6455;font-weight:600}
+.info-row .val{color:var(--ink-soft);font-weight:500}
+.socials{display:flex;gap:12px;margin-top:auto}
+.socials a{
+  width:46px;height:46px;border-radius:50%;
+  border:1px solid var(--line);color:var(--ink-soft);
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:background .25s,color .25s,transform .25s;
+}
+.socials a:hover{background:var(--poppy);color:#fff;transform:translateY(-2px);border-color:var(--poppy)}
+.socials svg{width:20px;height:20px}
+@media (max-width:900px){
+  .contact-card{grid-template-columns:1fr}
+  .contact-map{min-height:320px;order:2}
+  .contact-info{order:1;padding:34px 26px}
+}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#b3ab9b;padding:64px 0 34px}
+.foot-grid{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:44px;margin-bottom:44px;
+}
+.foot-brand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.foot-brand img{width:52px;height:52px;border-radius:50%}
+.foot-brand span{font-family:'Playfair Display',serif;color:#f6f3ec;font-size:1.2rem;font-weight:600}
+.foot-grid p{font-size:.95rem;max-width:34ch}
+.foot-grid h3{color:#f6f3ec;font-size:1.02rem;font-weight:600;margin-bottom:16px;font-family:'Jost',sans-serif}
+.foot-grid ul{list-style:none;display:grid;gap:10px}
+.foot-grid ul a{color:#b3ab9b;text-decoration:none;font-size:.95rem;transition:color .25s}
+.foot-grid ul a:hover{color:#fff}
+.foot-social{display:flex;gap:12px;margin-top:20px}
+.foot-social a{
+  width:42px;height:42px;border-radius:50%;
+  border:1px solid rgba(246,243,236,.2);color:#d8d2c4;
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:background .25s,transform .25s;
+}
+.foot-social a:hover{background:var(--poppy);color:#fff;transform:translateY(-2px)}
+.foot-social svg{width:18px;height:18px}
+.foot-bottom{
+  border-top:1px solid rgba(246,243,236,.12);padding-top:26px;
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
+  font-size:.85rem;color:#a89f8f;
+}
+.foot-bottom a{color:#b3ab9b;text-decoration:none}
+.foot-bottom a:hover{color:#fff}
+@media (max-width:820px){.foot-grid{grid-template-columns:1fr;gap:34px}}
+</style>
+</head>
+<body>
+
+<div id="intro" aria-hidden="true">
+  <img src="img/badge.png" alt="" width="110" height="110">
+</div>
+
+<header>
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top">
+      <img src="img/badge.png" alt="The Forces Cafe RSA logo" width="44" height="44">
+      <span>The Forces Cafe</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#menu">The Cafe</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#visit">Find Us</a></li>
+    </ul>
+    <a class="nav-call" href="tel:+64212221737">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      021 222 1737
+    </a>
+    <button id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-slides" aria-hidden="true">
+    <div class="hero-slide on" style="background-image:url('img/hero-coffee.jpg')"></div>
+    <div class="hero-slide" data-src="img/hero-brunch.jpg"></div>
+    <div class="hero-slide" data-src="img/about-cafe.jpg"></div>
+  </div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Cafe at the Gisborne RSA, Childers Road</p>
+    <h1>Coffee, kai and <em>good company</em> in the heart of Gisborne.</h1>
+    <p class="hero-sub">Barista coffee, an all-day cabinet and a courtyard that gets live music. Everyone welcome, member or not.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-poppy" href="tel:+64212221737">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call the Cafe
+      </a>
+      <a class="btn btn-ghost" href="#visit">Find Us</a>
+    </div>
+    <div class="hero-quote">
+      <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <blockquote id="heroQuote">Best flat white on Childers Road, and the crew remember your order by day two.</blockquote>
+      <p class="who" id="heroWho">Mere T, Kaiti</p>
+      <p class="tag">Example reviews</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>What comes out of our kitchen</h2>
+      <p>Simple food done properly, coffee made by people who care about it, and a venue that turns it on for the big days.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="card-img"><img src="img/reel-1.jpg" alt="Barista pouring latte art at The Forces Cafe" width="540" height="960" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+            From the machine
+          </span>
+          <h3>Barista Coffee</h3>
+          <p>Flat whites, long blacks and proper hot chocolate, poured with care every morning of the week.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="card-img"><img src="img/card-bigbreak.jpg" alt="French toast stacked with blueberries and banana" width="1000" height="1293" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+            Mornings
+          </span>
+          <h3>Breakfast &amp; Brunch</h3>
+          <p>Cooked breakfasts and sweet plates that set you up for the day, served without the wait.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="card-img"><img src="img/card-lunch.jpg" alt="Fried egg on toast with smashed avocado" width="1000" height="1000" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11a7 7 0 0 1 14 0"/><path d="M4 15h16"/><path d="M6 19h12"/></svg>
+            Middays
+          </span>
+          <h3>Lunch &amp; Cabinet Food</h3>
+          <p>Toasted sandwiches, savouries and a cabinet restocked through the day. Grab and go or sit down.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="card-img"><img src="img/reel-6.jpg" alt="Catering platters of finger food prepared by The Forces Cafe" width="540" height="960" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M4 13a8 8 0 0 1 16 0"/><path d="M2 17h20"/><path d="M4 21h16"/></svg>
+            For your event
+          </span>
+          <h3>Catering &amp; Platters</h3>
+          <p>Finger food, platters and spreads made for tangi, birthdays, work dos and everything between.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="card-img"><img src="img/reel-4.jpg" alt="A full function room at the Gisborne RSA" width="540" height="960" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21v-8l9-6 9 6v8"/><path d="M9 21v-6h6v6"/></svg>
+            The hall
+          </span>
+          <h3>Functions at the RSA</h3>
+          <p>A big hall, a stocked bar and kitchen on site. Book the space for your next gathering.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="card-img"><img src="img/reel-5.jpg" alt="Live country music band playing on stage at the Gisborne RSA" width="960" height="540" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            Weekends
+          </span>
+          <h3>Live Music &amp; Events</h3>
+          <p>Local bands, country music club days and courtyard sessions when the sun is out. Keep an eye on our Facebook.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-photos reveal">
+        <div class="about-main">
+          <img src="img/reel-2.jpg" alt="Live music in the courtyard at The Forces Cafe, Gisborne RSA" width="960" height="540" loading="lazy">
+        </div>
+        <div class="about-small">
+          <img src="img/reel-7.jpg" alt="Hot chocolate with cocoa art from The Forces Cafe" width="540" height="960" loading="lazy">
+        </div>
+        <div class="about-tag">184 Childers Road<br>Gisborne</div>
+      </div>
+      <div class="about-copy reveal">
+        <h2>The cafe inside the Gisborne RSA</h2>
+        <p>The Forces Cafe runs out of the RSA on Childers Road, and that shapes everything about it. The poppy on the door means the tables fill with returned service folk, whanau, workers on smoko and anyone after a decent feed.</p>
+        <p>You do not need to be a member. Come in for a coffee, stay for lunch, and if there is a band in the courtyard, stay longer.</p>
+        <ul class="about-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Everyone welcome, member or not
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Locally run, part of the RSA community
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Catering and function bookings by arrangement
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREW -->
+<section id="crew">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>The people behind the counter</h2>
+      <p>A small crew who know the regulars by name and the orders by heart.</p>
+    </div>
+    <span class="crew-badge reveal">Example team, real crew photos coming soon</span>
+    <div class="crew-grid">
+      <div class="crew-card reveal">
+        <div class="avatar" aria-hidden="true">M</div>
+        <h3>Cafe Manager</h3>
+        <p>Runs the floor, takes the function bookings and keeps the cabinet full.</p>
+      </div>
+      <div class="crew-card reveal">
+        <div class="avatar" aria-hidden="true">B</div>
+        <h3>Head Barista</h3>
+        <p>On the machine from open. The latte art in our photos is theirs.</p>
+      </div>
+      <div class="crew-card reveal">
+        <div class="avatar" aria-hidden="true">K</div>
+        <h3>Kitchen Lead</h3>
+        <p>Behind the breakfasts, the platters and the catering spreads.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>What locals say</h2>
+      <p>Word of mouth built this place. Here is the sort of thing we hear over the counter.</p>
+    </div>
+    <div class="review-grid">
+      <article class="review-card reveal">
+        <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p>"Best flat white on Childers Road, and the crew remember your order by day two. The courtyard on a sunny Saturday is hard to beat."</p>
+        <p class="who">Mere T, Kaiti</p>
+      </article>
+      <article class="review-card reveal">
+        <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p>"They catered my dad's 70th at the RSA hall. Platters were generous, nothing ran out, and the price was fair."</p>
+        <p class="who">Jared W, Te Hapara</p>
+      </article>
+      <article class="review-card reveal">
+        <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p>"Popped in for a pie and stayed two hours because a country band started up. Good kai, good people, good afternoon."</p>
+        <p class="who">Anaru H, Mangapapa</p>
+      </article>
+    </div>
+    <p class="review-note reveal">These are example reviews shown while we gather our Google reviews. You can read the real ones, and add your own, on our Google listing.</p>
+    <div class="review-actions reveal">
+      <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=The+Forces+Cafe+RSA+184+Childers+Road+Gisborne" target="_blank" rel="noopener">See all our Google reviews</a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW BANNER -->
+<section id="banner">
+  <div class="wrap banner-inner reveal">
+    <h2>Been in for a coffee? Tell Gisborne about it.</h2>
+    <a class="btn btn-light" href="https://www.google.com/maps/search/?api=1&query=The+Forces+Cafe+RSA+184+Childers+Road+Gisborne" target="_blank" rel="noopener">Leave us a review</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="visit">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <div class="contact-map">
+        <iframe title="Map showing The Forces Cafe at the Gisborne RSA, 184 Childers Road, Gisborne" src="https://www.google.com/maps?q=The%20Forces%20Cafe%20RSA%2C%20184%20Childers%20Road%2C%20Gisborne%204010&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div class="contact-info">
+        <h2>Come find us</h2>
+        <p>Inside the Gisborne RSA on Childers Road. Parking out front, courtyard out the side.</p>
+        <div class="contact-btns">
+          <a class="btn btn-poppy" href="tel:+64212221737">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call The Forces Cafe
+          </a>
+          <a class="btn btn-ink" href="#" data-gmail data-user="sales" data-domain="handygisborne.co.nz" data-su="Enquiry%20from%20the%20website">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            Email The Forces Cafe
+          </a>
+        </div>
+        <div class="info-rows">
+          <div class="info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><div class="lbl">Address</div><div class="val">184 Childers Road, Gisborne 4010</div></div>
+          </div>
+          <div class="info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div><div class="lbl">Phone</div><div class="val"><a href="tel:+64212221737" style="text-decoration:none;color:inherit">021 222 1737</a></div></div>
+          </div>
+          <div class="info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <div><div class="lbl">Email</div><div class="val" data-email-text data-user="sales" data-domain="handygisborne.co.nz"></div></div>
+          </div>
+          <div class="info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div><div class="lbl">Hours</div><div class="val">Call for today's hours</div></div>
+          </div>
+        </div>
+        <div class="socials">
+          <a href="https://www.facebook.com/TheForcesCafeGisborne" target="_blank" rel="noopener" aria-label="The Forces Cafe on Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21.888v-7.402h2.486l.372-2.886H13.5v-1.843c0-.835.232-1.404 1.43-1.404h1.528V5.772a20.44 20.44 0 0 0-2.227-.114c-2.204 0-3.712 1.345-3.712 3.815v2.127H8.028v2.886h2.491v7.402a10 10 0 1 1 2.981 0Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/explore/search/keyword/?q=the%20forces%20cafe%20gisborne" target="_blank" rel="noopener" aria-label="Find The Forces Cafe on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="img/badge.png" alt="The Forces Cafe RSA logo" width="52" height="52" loading="lazy">
+          <span>The Forces Cafe</span>
+        </div>
+        <p>The cafe at the Gisborne RSA. Coffee, kai and a courtyard, with everyone welcome through the door.</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/TheForcesCafeGisborne" target="_blank" rel="noopener" aria-label="The Forces Cafe on Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21.888v-7.402h2.486l.372-2.886H13.5v-1.843c0-.835.232-1.404 1.43-1.404h1.528V5.772a20.44 20.44 0 0 0-2.227-.114c-2.204 0-3.712 1.345-3.712 3.815v2.127H8.028v2.886h2.491v7.402a10 10 0 1 1 2.981 0Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/explore/search/keyword/?q=the%20forces%20cafe%20gisborne" target="_blank" rel="noopener" aria-label="Find The Forces Cafe on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3>Visit</h3>
+        <ul>
+          <li><a href="#menu">The Cafe</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#visit">Find Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="tel:+64212221737">021 222 1737</a></li>
+          <li><a href="#" data-gmail data-user="sales" data-domain="handygisborne.co.nz" data-su="Enquiry%20from%20the%20website">Email us</a></li>
+          <li>184 Childers Road, Gisborne</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year">2026</span> The Forces Cafe, Gisborne RSA. All rights reserved.</span>
+      <span><a href="terms.html">Terms &amp; Conditions</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* intro overlay */
+  var intro = document.getElementById('intro');
+  if (intro) {
+    window.addEventListener('load', function(){
+      setTimeout(function(){ intro.classList.add('gone'); }, reduced ? 0 : 900);
+    });
+    setTimeout(function(){ intro.classList.add('gone'); }, 2600);
+  }
+
+  /* mobile nav */
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') { links.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+  });
+
+  /* hero slide rotation (lazy-load slides 2+) */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.hero-slide'));
+  slides.forEach(function(s){
+    var src = s.getAttribute('data-src');
+    if (src) { s.style.backgroundImage = "url('" + src + "')"; }
+  });
+  if (!reduced && slides.length > 1) {
+    var cur = 0;
+    setInterval(function(){
+      slides[cur].classList.remove('on');
+      cur = (cur + 1) % slides.length;
+      slides[cur].classList.add('on');
+    }, 6500);
+  }
+
+  /* hero review quote rotation */
+  var quotes = [
+    { q: "Best flat white on Childers Road, and the crew remember your order by day two.", w: "Mere T, Kaiti" },
+    { q: "They catered my dad's 70th at the RSA hall. Generous platters, nothing ran out.", w: "Jared W, Te Hapara" },
+    { q: "Popped in for a pie and stayed two hours because a country band started up.", w: "Anaru H, Mangapapa" }
+  ];
+  var qEl = document.getElementById('heroQuote');
+  var wEl = document.getElementById('heroWho');
+  if (!reduced && qEl) {
+    var qi = 0;
+    setInterval(function(){
+      qEl.style.opacity = 0;
+      setTimeout(function(){
+        qi = (qi + 1) % quotes.length;
+        qEl.textContent = quotes[qi].q;
+        wEl.textContent = quotes[qi].w;
+        qEl.style.opacity = 1;
+      }, 500);
+    }, 6000);
+  }
+
+  /* scroll reveals */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduced) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* gmail compose links + email text (built from parts) */
+  document.querySelectorAll('a[data-gmail]').forEach(function(a){
+    var to = a.getAttribute('data-user') + '@' + a.getAttribute('data-domain');
+    a.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + (a.getAttribute('data-su') || '') + '&body=' + (a.getAttribute('data-body') || '');
+    a.target = '_blank'; a.rel = 'noopener';
+  });
+  document.querySelectorAll('[data-email-text]').forEach(function(el){
+    el.textContent = el.getAttribute('data-user') + '@' + el.getAttribute('data-domain');
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
