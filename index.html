@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="img/fb-logo.png">
 <link rel="icon" type="image/png" href="img/badge.png">
-<link rel="preload" as="image" href="img/hero-coffee.jpg" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="img/fn-bangers-m.webp 840w, img/fn-bangers.webp 880w" imagesizes="100vw" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
@@ -125,6 +125,7 @@ header{
   opacity:0;transition:opacity 1.8s ease;
   filter:saturate(.85) contrast(1.05);
 }
+.hero-slide img{width:100%;height:100%;object-fit:cover}
 .hero-slide.on{opacity:1}
 .hero::after{
   content:"";position:absolute;inset:0;
@@ -180,6 +181,7 @@ header{
 
 /* ---------- sections shared ---------- */
 section{padding:96px 0}
+@media (max-width:640px){section{padding:60px 0}.sec-head{margin-bottom:34px}}
 .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
 .sec-head{max-width:640px;margin-bottom:54px}
 .sec-head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:600;margin-bottom:14px;text-wrap:balance}
@@ -437,9 +439,9 @@ footer{background:var(--ink);color:#b3ab9b;padding:64px 0 34px}
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-slides" aria-hidden="true">
-    <div class="hero-slide on" style="background-image:url('img/hero-coffee.jpg')"></div>
-    <div class="hero-slide" data-src="img/hero-brunch.jpg"></div>
-    <div class="hero-slide" data-src="img/about-cafe.jpg"></div>
+    <div class="hero-slide on"><img src="img/fn-bangers.webp" srcset="img/fn-bangers-m.webp 840w, img/fn-bangers.webp 880w" sizes="100vw" alt="" fetchpriority="high" width="880" height="1100"></div>
+    <div class="hero-slide"><img src="img/fn-room.webp" srcset="img/fn-room-m.webp 840w, img/fn-room.webp 1100w" sizes="100vw" alt="" loading="lazy" width="1100" height="733"></div>
+    <div class="hero-slide"><img src="img/fn-canapes.webp" srcset="img/fn-canapes-m.webp 840w, img/fn-canapes.webp 825w" sizes="100vw" alt="" loading="lazy" width="825" height="1100"></div>
   </div>
   <div class="hero-inner">
     <p class="hero-eyebrow">Cafe at the Gisborne RSA, Childers Road</p>
@@ -470,7 +472,7 @@ footer{background:var(--ink);color:#b3ab9b;padding:64px 0 34px}
     </div>
     <div class="cards">
       <article class="card reveal">
-        <div class="card-img"><img src="img/reel-1.jpg" alt="Barista pouring latte art at The Forces Cafe" width="540" height="960" loading="lazy"></div>
+        <div class="card-img"><img src="img/reel-1.jpg" srcset="img/reel-1-m.webp 840w, img/reel-1.jpg 540w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Barista pouring latte art at The Forces Cafe" width="540" height="960" loading="lazy"></div>
         <div class="card-body">
           <span class="card-label">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
@@ -481,7 +483,7 @@ footer{background:var(--ink);color:#b3ab9b;padding:64px 0 34px}
         </div>
       </article>
       <article class="card reveal">
-        <div class="card-img"><img src="img/card-bigbreak.jpg" alt="French toast stacked with blueberries and banana" width="1000" height="1293" loading="lazy"></div>
+        <div class="card-img"><img src="img/fn-desserts.webp" srcset="img/fn-desserts-m.webp 840w, img/fn-desserts.webp 825w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Sweet plates lined up fresh from the kitchen" width="825" height="1100" loading="lazy"></div>
         <div class="card-body">
           <span class="card-label">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
@@ -492,7 +494,7 @@ footer{background:var(--ink);color:#b3ab9b;padding:64px 0 34px}
         </div>
       </article>
       <article class="card reveal">
-        <div class="card-img"><img src="img/card-lunch.jpg" alt="Fried egg on toast with smashed avocado" width="1000" height="1000" loading="lazy"></div>
+        <div class="card-img"><img src="img/fn-mains.webp" srcset="img/fn-mains-m.webp 840w, img/fn-mains.webp 1100w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Plated lunches ready to go out to the tables" width="1100" height="825" loading="lazy"></div>
         <div class="card-body">
           <span class="card-label">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11a7 7 0 0 1 14 0"/><path d="M4 15h16"/><path d="M6 19h12"/></svg>
@@ -503,7 +505,7 @@ footer{background:var(--ink);color:#b3ab9b;padding:64px 0 34px}
         </div>
       </article>
       <article class="card reveal">
-        <div class="card-img"><img src="img/reel-6.jpg" alt="Catering platters of finger food prepared by The Forces Cafe" width="540" height="960" loading="lazy"></div>
+        <div class="card-img"><img src="img/reel-6.jpg" srcset="img/reel-6-m.webp 840w, img/reel-6.jpg 540w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Catering platters of finger food prepared by The Forces Cafe" width="540" height="960" loading="lazy"></div>
         <div class="card-body">
           <span class="card-label">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M4 13a8 8 0 0 1 16 0"/><path d="M2 17h20"/><path d="M4 21h16"/></svg>
@@ -514,7 +516,7 @@ footer{background:var(--ink);color:#b3ab9b;padding:64px 0 34px}
         </div>
       </article>
       <article class="card reveal">
-        <div class="card-img"><img src="img/reel-4.jpg" alt="A full function room at the Gisborne RSA" width="540" height="960" loading="lazy"></div>
+        <div class="card-img"><img src="img/reel-4.jpg" srcset="img/reel-4-m.webp 840w, img/reel-4.jpg 540w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="A full function room at the Gisborne RSA" width="540" height="960" loading="lazy"></div>
         <div class="card-body">
           <span class="card-label">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21v-8l9-6 9 6v8"/><path d="M9 21v-6h6v6"/></svg>
@@ -525,7 +527,7 @@ footer{background:var(--ink);color:#b3ab9b;padding:64px 0 34px}
         </div>
       </article>
       <article class="card reveal">
-        <div class="card-img"><img src="img/reel-5.jpg" alt="Live country music band playing on stage at the Gisborne RSA" width="960" height="540" loading="lazy"></div>
+        <div class="card-img"><img src="img/reel-5.jpg" srcset="img/reel-5-m.webp 840w, img/reel-5.jpg 960w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Live country music band playing on stage at the Gisborne RSA" width="960" height="540" loading="lazy"></div>
         <div class="card-body">
           <span class="card-label">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
@@ -606,10 +608,10 @@ footer{background:var(--ink);color:#b3ab9b;padding:64px 0 34px}
     <div class="about-grid">
       <div class="about-photos reveal">
         <div class="about-main">
-          <img src="img/reel-2.jpg" alt="Live music in the courtyard at The Forces Cafe, Gisborne RSA" width="960" height="540" loading="lazy">
+          <img src="img/reel-2.jpg" srcset="img/reel-2-m.webp 840w, img/reel-2.jpg 960w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Live music in the courtyard at The Forces Cafe, Gisborne RSA" width="960" height="540" loading="lazy">
         </div>
         <div class="about-small">
-          <img src="img/reel-7.jpg" alt="Hot chocolate with cocoa art from The Forces Cafe" width="540" height="960" loading="lazy">
+          <img src="img/reel-7.jpg" srcset="img/reel-7-m.webp 840w, img/reel-7.jpg 540w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Hot chocolate with cocoa art from The Forces Cafe" width="540" height="960" loading="lazy">
         </div>
         <div class="about-tag">184 Childers Road<br>Gisborne</div>
       </div>
@@ -645,22 +647,22 @@ footer{background:var(--ink);color:#b3ab9b;padding:64px 0 34px}
       <p>From plated dinners in the hall to canape spreads, dessert tables and carved fruit centrepieces, the kitchen turns it on for the big days. Book the space, we handle the rest.</p>
     </div>
     <div class="fn-gallery reveal">
-      <figure><img src="img/fn-room.webp" alt="The RSA function room set with long tables for an event" loading="lazy" width="1100" height="825"></figure>
-      <figure><img src="img/fn-mains.webp" alt="Plated mains lined up ready for service" loading="lazy" width="1100" height="825"></figure>
-      <figure><img src="img/fn-canapes.webp" alt="A canape spread laid out for a function" loading="lazy" width="825" height="1100"></figure>
-      <figure><img src="img/fn-chef.webp" alt="Our chef plating desserts in the kitchen" loading="lazy" width="733" height="1100"></figure>
-      <figure><img src="img/fn-bangers.webp" alt="Bangers and mash plated with green beans" loading="lazy" width="880" height="1100"></figure>
-      <figure><img src="img/fn-fruit-koru.webp" alt="Carved watermelon centrepiece with a fresh fruit platter" loading="lazy" width="1100" height="1100"></figure>
-      <figure><img src="img/fn-dessert-cups.webp" alt="A dessert table of individual sweet cups" loading="lazy" width="1100" height="619"></figure>
-      <figure><img src="img/fn-tomato.webp" alt="Tomato-shaped plated desserts ready for service" loading="lazy" width="733" height="1100"></figure>
-      <figure><img src="img/fn-figs.webp" alt="A platter of filled figs and canapes" loading="lazy" width="1100" height="619"></figure>
-      <figure><img src="img/fn-bar.webp" alt="The stocked bar at the Gisborne RSA" loading="lazy" width="825" height="1100"></figure>
-      <figure><img src="img/fn-dessert-canapes.webp" alt="A sweet canape spread of tarts and slices" loading="lazy" width="825" height="1100"></figure>
-      <figure><img src="img/fn-fruit-star.webp" alt="A second carved watermelon fruit platter for a function table" loading="lazy" width="880" height="1100"></figure>
-      <figure><img src="img/fn-desserts.webp" alt="Mango desserts plated and lined up for service" loading="lazy" width="825" height="1100"></figure>
-      <figure><img src="img/fn-crumbed.webp" alt="A crumbed main plated with sauce" loading="lazy" width="619" height="1100"></figure>
-      <figure><img src="img/fn-dessert-lemon.webp" alt="A lemon-shaped dessert plated in the kitchen" loading="lazy" width="825" height="1100"></figure>
-      <figure><img src="img/fn-lamington.webp" alt="Lamington dessert sandwiches plated up" loading="lazy" width="733" height="1100"></figure>
+      <figure><img src="img/fn-room.webp" srcset="img/fn-room-m.webp 840w, img/fn-room.webp 1100w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="The RSA function room set with long tables for an event" loading="lazy" width="1100" height="825"></figure>
+      <figure><img src="img/fn-mains.webp" srcset="img/fn-mains-m.webp 840w, img/fn-mains.webp 1100w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Plated mains lined up ready for service" loading="lazy" width="1100" height="825"></figure>
+      <figure><img src="img/fn-canapes.webp" srcset="img/fn-canapes-m.webp 840w, img/fn-canapes.webp 825w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="A canape spread laid out for a function" loading="lazy" width="825" height="1100"></figure>
+      <figure><img src="img/fn-chef.webp" srcset="img/fn-chef-m.webp 840w, img/fn-chef.webp 733w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Our chef plating desserts in the kitchen" loading="lazy" width="733" height="1100"></figure>
+      <figure><img src="img/fn-bangers.webp" srcset="img/fn-bangers-m.webp 840w, img/fn-bangers.webp 880w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Bangers and mash plated with green beans" loading="lazy" width="880" height="1100"></figure>
+      <figure><img src="img/fn-fruit-koru.webp" srcset="img/fn-fruit-koru-m.webp 840w, img/fn-fruit-koru.webp 1100w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Carved watermelon centrepiece with a fresh fruit platter" loading="lazy" width="1100" height="1100"></figure>
+      <figure><img src="img/fn-dessert-cups.webp" srcset="img/fn-dessert-cups-m.webp 840w, img/fn-dessert-cups.webp 1100w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="A dessert table of individual sweet cups" loading="lazy" width="1100" height="619"></figure>
+      <figure><img src="img/fn-tomato.webp" srcset="img/fn-tomato-m.webp 840w, img/fn-tomato.webp 733w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Tomato-shaped plated desserts ready for service" loading="lazy" width="733" height="1100"></figure>
+      <figure><img src="img/fn-figs.webp" srcset="img/fn-figs-m.webp 840w, img/fn-figs.webp 1100w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="A platter of filled figs and canapes" loading="lazy" width="1100" height="619"></figure>
+      <figure><img src="img/fn-bar.webp" srcset="img/fn-bar-m.webp 840w, img/fn-bar.webp 825w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="The stocked bar at the Gisborne RSA" loading="lazy" width="825" height="1100"></figure>
+      <figure><img src="img/fn-dessert-canapes.webp" srcset="img/fn-dessert-canapes-m.webp 840w, img/fn-dessert-canapes.webp 825w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="A sweet canape spread of tarts and slices" loading="lazy" width="825" height="1100"></figure>
+      <figure><img src="img/fn-fruit-star.webp" srcset="img/fn-fruit-star-m.webp 840w, img/fn-fruit-star.webp 880w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="A second carved watermelon fruit platter for a function table" loading="lazy" width="880" height="1100"></figure>
+      <figure><img src="img/fn-desserts.webp" srcset="img/fn-desserts-m.webp 840w, img/fn-desserts.webp 825w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Mango desserts plated and lined up for service" loading="lazy" width="825" height="1100"></figure>
+      <figure><img src="img/fn-crumbed.webp" srcset="img/fn-crumbed-m.webp 840w, img/fn-crumbed.webp 619w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="A crumbed main plated with sauce" loading="lazy" width="619" height="1100"></figure>
+      <figure><img src="img/fn-dessert-lemon.webp" srcset="img/fn-dessert-lemon-m.webp 840w, img/fn-dessert-lemon.webp 825w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="A lemon-shaped dessert plated in the kitchen" loading="lazy" width="825" height="1100"></figure>
+      <figure><img src="img/fn-lamington.webp" srcset="img/fn-lamington-m.webp 840w, img/fn-lamington.webp 733w" sizes="(min-width:900px) 33vw, (min-width:600px) 50vw, 100vw" alt="Lamington dessert sandwiches plated up" loading="lazy" width="733" height="1100"></figure>
     </div>
   </div>
 </section>
